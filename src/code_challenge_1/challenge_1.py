@@ -1,3 +1,3 @@
 def format_time(s):
-    return "1 second"
+    return '{} {}{}'.format(s,'second','s' if s>1 else '')
 

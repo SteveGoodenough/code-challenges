@@ -6,6 +6,6 @@ def test_one_second():
     assert t == "1 second"
     
 def test_ten_seconds():
-    t = format_time(1)
+    t = format_time(10)
     assert t == "10 seconds"
-    
+
