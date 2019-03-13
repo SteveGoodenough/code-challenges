@@ -39,3 +39,8 @@ def test_one_day():
 def test_one_year():
     t = format_time(31536000)
     assert t == "1 year"
+
+
+def test_hour_min_sec():
+    t = format_time(3662)
+    assert t == "1 hour, 1 minute and 2 seconds"
