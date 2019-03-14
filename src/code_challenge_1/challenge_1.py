@@ -10,13 +10,12 @@ def format_time(seconds):
 
 
 def time_slice(seconds, time_string, time_unit, unit_name):
-    #if seconds >= time_unit:
-        units = int(seconds / time_unit)
+    units = int(seconds / time_unit)
+    if units:
         seconds = seconds - units * time_unit
-        if units > 0:
-            return seconds, (time_string if time_string != 'none' else '') + ', {} {}{}'.format(units, unit_name, 's' if units > 1 else '')
-        else:
-            return seconds, time_string
+        return seconds, (time_string if time_string != 'none' else '') + ', {} {}{}'.format(units, unit_name, 's' if units > 1 else '')
+    else:
+        return seconds, time_string
 
 
 def rreplace(string, old, new, occurrence):
