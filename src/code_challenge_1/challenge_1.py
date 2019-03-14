@@ -5,7 +5,6 @@ def format_time(seconds):
         seconds, time_string = time_slice(seconds, time_string, 3600, 'hour')
         seconds, time_string = time_slice(seconds, time_string, 60, 'minute')
         seconds, time_string = time_slice(seconds, time_string, 1, 'second')
-        print(time_string)
         return rreplace(time_string.lstrip(", "), ',', ' and', 1)
 
 
