@@ -1,40 +1,22 @@
-def format_time(s):
-    t = ""
-    t, s = time_slice(s, t, 31536000, 'year')
-    t, s = time_slice(s, t, 86400, 'day')
-    t, s = time_slice(s, t, 3600, 'hour')
-    t, s = time_slice(s, t, 60, 'minute')
-    t, s = time_slice(s, t, 1, 'second')
-    return rreplace(t.lstrip(", "), ',', ' and', 1) 
+def format_time(seconds):
+    time_string = ""
+    seconds, time_string = time_slice(seconds, time_string, 31536000, 'year')
+    seconds, time_string = time_slice(seconds, time_string, 86400, 'day')
+    seconds, time_string = time_slice(seconds, time_string, 3600, 'hour')
+    seconds, time_string = time_slice(seconds, time_string, 60, 'minute')
+    seconds, time_string = time_slice(seconds, time_string, 1, 'second')
+    return rreplace(time_string.lstrip(", "), ',', ' and', 1) 
 
 
-def time_slice(secs, t, unit, nam):
-    if secs >= unit:
-        u = int(secs / unit)
-        secs = secs - u * unit
-        return t + ', {} {}{}'.format(u ,nam ,'s' if u > 1 else ''), secs
-    else: return t, secs
+def time_slice(seconds, time_string, time_unit, unit_name):
+    if seconds >= time_unit:
+        units = int(seconds / time_unit)
+        seconds = seconds - units * time_unit
+        return seconds, time_string + ', {} {}{}'.format(units ,unit_name ,'s' if units > 1 else '')
+    else: return seconds, time_string 
 
 
-def rreplace(s, old, new, occurrence):
-    li = s.rsplit(old, occurrence)
+def rreplace(string, old, new, occurrence):
+    li = string.rsplit(old, occurrence)
     return new.join(li)
-
-    # if s >= 31536000:
-    #     u = int(s / 31536000)
-    #     s = s - u * 31536000
-    #     t += '{}{} {}{}'.format(' and ' if len(t) else '', u ,'year', 's' if u > 1 else '')
-    # if s >= 86400:
-    #     u = int(s / 86400)
-    #     s = s - u * 86400
-    #     t += '{}{} {}{}'.format(' and ' if len(t) else '', u ,'day', 's' if u > 1 else '')
-    # if s >= 3600:
-    #     u = int(s / 3600)
-    #     s = s - u * 3660
-    #     t += '{}{} {}{}'.format(' and ' if len(t) else '', u ,'hour', 's' if u > 1 else '')
-    # if s >= 60:
-    #     u = int(s / 60)
-    #     s = s - u * 60
-    #     t += '{}{} {}{}'.format(' and ' if len(t) else '', u ,'minute','s' if u > 1 else '')
-    # if (s > 0): t += '{}{} {}{}'.format(' and ' if len(t) else '', s, 'second', 's' if s > 1 else '')
 

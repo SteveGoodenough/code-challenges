@@ -36,6 +36,11 @@ def test_one_day():
     assert t == "1 day"
 
 
+def test_two_days():
+    t = format_time(86400*2)
+    assert t == "2 days"
+
+
 def test_one_year():
     t = format_time(31536000)
     assert t == "1 year"
