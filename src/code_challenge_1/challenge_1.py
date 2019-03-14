@@ -1,17 +1,15 @@
 def format_time(seconds):
-        time_string = "none"
-        seconds, time_string = time_slice(seconds, time_string, 31536000, 'year')
-        seconds, time_string = time_slice(seconds, time_string, 86400, 'day')
-        seconds, time_string = time_slice(seconds, time_string, 3600, 'hour')
-        seconds, time_string = time_slice(seconds, time_string, 60, 'minute')
-        seconds, time_string = time_slice(seconds, time_string, 1, 'second')
-        return rreplace(time_string.lstrip(", "), ',', ' and', 1)
+    slice = {'year': 31536000, 'day': 86400, 'hour': 3600, 'minute': 60, 'second': 1}
+    time_string = "none"
+    for unit_name, unit_time in slice.items():
+        seconds, time_string = time_slice(seconds, time_string, unit_time, unit_name)
+    return rreplace(time_string.lstrip(", "), ',', ' and', 1)
 
 
-def time_slice(seconds, time_string, time_unit, unit_name):
-    units = int(seconds / time_unit)
+def time_slice(seconds, time_string, unit_time, unit_name):
+    units = int(seconds / unit_time)
     if units:
-        seconds = seconds - units * time_unit
+        seconds = seconds - units * unit_time
         return seconds, (time_string if time_string != 'none' else '') + ', {} {}{}'.format(units, unit_name, 's' if units > 1 else '')
     else:
         return seconds, time_string
