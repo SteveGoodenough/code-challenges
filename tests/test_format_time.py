@@ -1,5 +1,5 @@
-import pytest
 from code_challenge_1.challenge_1 import format_time
+
 
 def test_one_second():
     t = format_time(1)
@@ -49,3 +49,8 @@ def test_one_year():
 def test_hour_min_sec():
     t = format_time(3662)
     assert t == "1 hour, 1 minute and 2 seconds"
+
+
+def test_none():
+    t = format_time(0)
+    assert t == "none"
