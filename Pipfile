@@ -7,7 +7,7 @@ verify_ssl = true
 pylint = "*"
 pytest = "*"
 pytest-watch = "*"
-# alan-pytridge = {editable = true,path = "."}
+code-challenges = {editable = true,path = "."}
 pytest-cov = "*"
 flake8 = "*"
 rope = "*"
