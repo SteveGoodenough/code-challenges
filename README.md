@@ -1,10 +1,4 @@
-# Mines a pint!
-
-This project is attempting to give a baseline for the simplest python project with the following features
-
-* linting
-* test coverage
-* continual testing
+# code-challenges
 
 ## Setup your python environnment
 
@@ -18,7 +12,7 @@ Use `pipenv` !! https://pipenv.readthedocs.io/en/latest/
 
 Anything less than 100% will fail
 
-`pytest --cov=alan_pytridge`
+`pytest --cov=src`
 
 ## Lint the project
 
@@ -27,4 +21,3 @@ Anything less than 100% will fail
 ## Run continual testing
 
 `ptw`
-# code-challenges

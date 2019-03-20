@@ -1,5 +1,5 @@
 [run]
-source = alan_pytridge
+source = code-challenge
 branch = True
 [report]
 fail_under = 100
