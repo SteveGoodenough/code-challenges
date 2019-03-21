@@ -51,6 +51,16 @@ def test_hour_min_sec():
     assert t == "1 hour, 1 minute and 2 seconds"
 
 
+def test_one_year_and_20_minutes():
+    t = format_time(31537200)
+    assert t == "1 year and 20 minutes"
+
+
+def test_two_years_one_hour_and_fifty_six_seconds():
+    t = format_time(63075656)
+    assert t == "2 years, 1 hour and 56 seconds"
+
+
 def test_none():
     t = format_time(0)
     assert t == "none"
