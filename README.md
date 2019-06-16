@@ -8,12 +8,12 @@ I have 3 functions to pass true/false test on a passed number
 * number_is_even
 * number_is_odd
 
-Long winded method
+Long winded method and concerned about mutability with the .append
 ```
-    res = []
+    result = []
     for item in input_list:
         if function(item):
-            res.append(item)
+            result.append(item)
 ```
 
 Using a lambda = bad!
@@ -23,8 +23,12 @@ Using a lambda = bad!
 
 Final simple method
 ```
-    res = list(item for item in input_list if function(item))
+    result = list(item for item in input_list if function(item))
 ```
+
+Passing a "dodgy" function was interesting as using a_dodgy_function that took a string and returned the string the my_filter function took this as true so resulted in the whole list being passed back as required.
+
+Tried with another function that took no input and passed None back, that broke it... so just surrounded the process in a try/except block
 
 
 ## Setup your python environnment
