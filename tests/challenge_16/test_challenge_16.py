@@ -215,6 +215,8 @@ def test_convert_roman_to_number():
     assert roman_to_number("MMCDLXXV") == 2475
     assert roman_to_number("MMDL") == 2550
 
+    assert roman_to_number("MCMLXXXIX") == 1989
+
 
 def test_add_two_roman_numerals():
     assert add_two_roman_numerals("I", "I") == "II"

@@ -21,17 +21,21 @@ def number_to_roman(number):
 
 
 def roman_to_number(roman):
-    number = roman.count("M") * 1000 + \
-        roman.count("D") * 500 + \
-        roman.count("C") * 100 + \
-        roman.count("L") * 50 + \
-        roman.count("X") * 10 + \
-        roman.count("V") * 5 + \
+    number = (
+        roman.count("M") * 1000 +
+        roman.count("D") * 500 +
+        roman.count("C") * 100 +
+        roman.count("L") * 50 +
+        roman.count("X") * 10 +
+        roman.count("V") * 5 +
         roman.count("I")
-    number -= roman.count("IV") * 2 + \
-        roman.count("IX") * 2 + \
-        roman.count("XL") * 20 + \
-        roman.count("XC") * 20 + \
-        roman.count("CD") * 200 + \
-        roman.count("CM") * 200
-    return number
+        )
+    fix_lower_denomination = (
+        roman.count("IV") +
+        roman.count("IX") +
+        roman.count("XL") * 10 +
+        roman.count("XC") * 10 +
+        roman.count("CD") * 100 +
+        roman.count("CM") * 100
+        ) * 2
+    return number - fix_lower_denomination
