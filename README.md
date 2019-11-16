@@ -1,5 +1,17 @@
 # code-challenges
 
+## code-challenge-16
+https://coding-challenges.jl-engineering.net/challenges/challenge-16/
+
+Create a function that accepts two strings containing roman numerals and returns as string containing a roman numeral which is the sum of the two roman numerals.
+
+Decided easiest option was to have a function to convert from a roman numeral to a number, do a simple addition and then a function to convert from a number to a roman numeral.
+
+Examples at https://www.romannumerals.org/converter gave a good set of tests to TDD against.
+
+I don't have any validation code, Romans didn't have a character for zero and there were specific lower denomination options, e.g. IV = 1 before 5 (4), XL = 10 before 50 (40), CM = 100 before 1000 (900), so only pass valid roman numbers to my function!
+
+
 ## code-challenge-6
 https://coding-challenges.jl-engineering.net/challenges/challenge-6/
 
