@@ -7,17 +7,17 @@ def number_to_roman(number):
     roman = "I" * number
     return roman\
         .replace("I" * 1000, "M")\
+        .replace("I" * 900, "CM")\
         .replace("I" * 500, "D")\
+        .replace("I" * 400, "CD")\
         .replace("I" * 100, "C")\
+        .replace("I" * 90, "XC")\
         .replace("I" * 50, "L")\
+        .replace("I" * 40, "XL")\
         .replace("I" * 10, "X")\
+        .replace("I" * 9, "IX")\
         .replace("I" * 5, "V")\
-        .replace("CCCC", "CD")\
-        .replace("XXXX", "XL")\
-        .replace("DCD", "CM")\
-        .replace("LXL", "XC")\
-        .replace("VIIII", "IX")\
-        .replace("IIII", "IV")
+        .replace("I" * 4, "IV")
 
 
 def roman_to_number(roman):
