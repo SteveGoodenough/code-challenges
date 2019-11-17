@@ -23,9 +23,8 @@ roman_numerals = {
 def number_to_roman(number):
     roman = ""
     for numeral, value in roman_numerals.items():
-        while number >= value:
-            roman += numeral
-            number -= value
+        roman += numeral * int(number / value)
+        number -= value * int(number / value)
     return roman
 
     # roman = "I" * number
