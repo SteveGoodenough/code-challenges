@@ -112,6 +112,8 @@ def test_convert_number_to_roman():
     assert number_to_roman(2022) == "MMXXII"
     assert number_to_roman(2019) == "MMXIX"
 
+    assert number_to_roman(0) == ""
+
 
 def test_convert_roman_to_number():
     assert roman_to_number("I") == 1
@@ -216,6 +218,7 @@ def test_convert_roman_to_number():
     assert roman_to_number("MMDL") == 2550
 
     assert roman_to_number("MCMLXXXIX") == 1989
+    assert roman_to_number("") == 0
 
 
 def test_add_two_roman_numerals():

@@ -2,22 +2,46 @@ def add_two_roman_numerals(first_numeral, second_numeral):
     return number_to_roman(roman_to_number(first_numeral) + roman_to_number(second_numeral))
 
 
+roman_numerals = {
+    'M': 1000,
+    'CM': 900,
+    'D': 500,
+    'CD': 400,
+    'C': 100,
+    'XC': 90,
+    'L': 50,
+    'XL': 40,
+    'X': 10,
+    'IX': 9,
+    'V': 5,
+    'IV': 4,
+    'I': 1,
+    }
+
+
 # I = 1 V = 5 X = 10 L = 50 C = 100 D = 500 M = 1000
 def number_to_roman(number):
-    roman = "I" * number
-    return roman\
-        .replace("I" * 1000, "M")\
-        .replace("I" * 900, "CM")\
-        .replace("I" * 500, "D")\
-        .replace("I" * 400, "CD")\
-        .replace("I" * 100, "C")\
-        .replace("I" * 90, "XC")\
-        .replace("I" * 50, "L")\
-        .replace("I" * 40, "XL")\
-        .replace("I" * 10, "X")\
-        .replace("I" * 9, "IX")\
-        .replace("I" * 5, "V")\
-        .replace("I" * 4, "IV")
+    roman = ""
+    for numeral, value in roman_numerals.items():
+        while number >= value:
+            roman += numeral
+            number -= value
+    return roman
+
+    # roman = "I" * number
+    # return roman\
+    #     .replace("I" * 1000, "M")\
+    #     .replace("I" * 900, "CM")\
+    #     .replace("I" * 500, "D")\
+    #     .replace("I" * 400, "CD")\
+    #     .replace("I" * 100, "C")\
+    #     .replace("I" * 90, "XC")\
+    #     .replace("I" * 50, "L")\
+    #     .replace("I" * 40, "XL")\
+    #     .replace("I" * 10, "X")\
+    #     .replace("I" * 9, "IX")\
+    #     .replace("I" * 5, "V")\
+    #     .replace("I" * 4, "IV")
 
 
 def roman_to_number(roman):
