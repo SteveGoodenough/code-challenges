@@ -1,224 +1,127 @@
 from code_challenge_16.challenge_16 import number_to_roman, roman_to_number, add_two_roman_numerals
+import pytest
 
 
-def test_convert_number_to_roman():
-    assert number_to_roman(1) == "I"
-    assert number_to_roman(2) == "II"
-    assert number_to_roman(3) == "III"
-    assert number_to_roman(4) == "IV"
-    assert number_to_roman(5) == "V"
-    assert number_to_roman(6) == "VI"
-    assert number_to_roman(7) == "VII"
-    assert number_to_roman(8) == "VIII"
-    assert number_to_roman(9) == "IX"
-    assert number_to_roman(10) == "X"
-    assert number_to_roman(11) == "XI"
-    assert number_to_roman(12) == "XII"
-    assert number_to_roman(13) == "XIII"
-    assert number_to_roman(14) == "XIV"
-    assert number_to_roman(15) == "XV"
-    assert number_to_roman(16) == "XVI"
-    assert number_to_roman(17) == "XVII"
-    assert number_to_roman(18) == "XVIII"
-    assert number_to_roman(19) == "XIX"
-    assert number_to_roman(20) == "XX"
-    assert number_to_roman(21) == "XXI"
-    assert number_to_roman(22) == "XXII"
-    assert number_to_roman(23) == "XXIII"
-    assert number_to_roman(24) == "XXIV"
-    assert number_to_roman(25) == "XXV"
-    assert number_to_roman(20) == "XX"
-    assert number_to_roman(25) == "XXV"
-    assert number_to_roman(30) == "XXX"
-    assert number_to_roman(35) == "XXXV"
-    assert number_to_roman(40) == "XL"
-    assert number_to_roman(45) == "XLV"
-    assert number_to_roman(50) == "L"
-    assert number_to_roman(55) == "LV"
-    assert number_to_roman(60) == "LX"
-    assert number_to_roman(65) == "LXV"
-    assert number_to_roman(70) == "LXX"
-    assert number_to_roman(75) == "LXXV"
-    assert number_to_roman(80) == "LXXX"
-    assert number_to_roman(85) == "LXXXV"
-    assert number_to_roman(90) == "XC"
-    assert number_to_roman(95) == "XCV"
-    assert number_to_roman(100) == "C"
-    assert number_to_roman(105) == "CV"
-    assert number_to_roman(110) == "CX"
-    assert number_to_roman(115) == "CXV"
-    assert number_to_roman(120) == "CXX"
-    assert number_to_roman(125) == "CXXV"
-    assert number_to_roman(130) == "CXXX"
-    assert number_to_roman(135) == "CXXXV"
-    assert number_to_roman(140) == "CXL"
-    assert number_to_roman(100) == "C"
-    assert number_to_roman(125) == "CXXV"
-    assert number_to_roman(150) == "CL"
-    assert number_to_roman(175) == "CLXXV"
-    assert number_to_roman(200) == "CC"
-    assert number_to_roman(225) == "CCXXV"
-    assert number_to_roman(250) == "CCL"
-    assert number_to_roman(275) == "CCLXXV"
-    assert number_to_roman(300) == "CCC"
-    assert number_to_roman(325) == "CCCXXV"
-    assert number_to_roman(350) == "CCCL"
-    assert number_to_roman(375) == "CCCLXXV"
-    assert number_to_roman(400) == "CD"
-    assert number_to_roman(425) == "CDXXV"
-    assert number_to_roman(450) == "CDL"
-    assert number_to_roman(475) == "CDLXXV"
-    assert number_to_roman(500) == "D"
-    assert number_to_roman(525) == "DXXV"
-    assert number_to_roman(550) == "DL"
-    assert number_to_roman(575) == "DLXXV"
-    assert number_to_roman(600) == "DC"
-    assert number_to_roman(625) == "DCXXV"
-    assert number_to_roman(650) == "DCL"
-    assert number_to_roman(675) == "DCLXXV"
-    assert number_to_roman(700) == "DCC"
-    assert number_to_roman(750) == "DCCL"
-    assert number_to_roman(800) == "DCCC"
-    assert number_to_roman(825) == "DCCCXXV"
-    assert number_to_roman(900) == "CM"
-    assert number_to_roman(975) == "CMLXXV"
-    assert number_to_roman(1000) == "M"
-    assert number_to_roman(1050) == "ML"
-    assert number_to_roman(1125) == "MCXXV"
-    assert number_to_roman(1200) == "MCC"
-    assert number_to_roman(1275) == "MCCLXXV"
-    assert number_to_roman(1350) == "MCCCL"
-    assert number_to_roman(1425) == "MCDXXV"
-    assert number_to_roman(1500) == "MD"
-    assert number_to_roman(1575) == "MDLXXV"
-    assert number_to_roman(1650) == "MDCL"
-    assert number_to_roman(1725) == "MDCCXXV"
-    assert number_to_roman(1800) == "MDCCC"
-    assert number_to_roman(1875) == "MDCCCLXXV"
-    assert number_to_roman(1950) == "MCML"
-    assert number_to_roman(2025) == "MMXXV"
-    assert number_to_roman(2100) == "MMC"
-    assert number_to_roman(2175) == "MMCLXXV"
-    assert number_to_roman(2250) == "MMCCL"
-    assert number_to_roman(2325) == "MMCCCXXV"
-    assert number_to_roman(2400) == "MMCD"
-    assert number_to_roman(2475) == "MMCDLXXV"
-    assert number_to_roman(2550) == "MMDL"
-
-    assert number_to_roman(14) == "XIV"
-    assert number_to_roman(79) == "LXXIX"
-    assert number_to_roman(225) == "CCXXV"
-    assert number_to_roman(845) == "DCCCXLV"
-    assert number_to_roman(2022) == "MMXXII"
-    assert number_to_roman(2019) == "MMXIX"
-
-    assert number_to_roman(0) == ""
+test_data =[
+    (1, "I"),
+    (2, "II"),
+    (3, "III"),
+    (4, "IV"),
+    (5, "V"),
+    (6, "VI"),
+    (7, "VII"),
+    (8, "VIII"),
+    (9, "IX"),
+    (10, "X"),
+    (11, "XI"),
+    (12, "XII"),
+    (13, "XIII"),
+    (14, "XIV"),
+    (15, "XV"),
+    (16, "XVI"),
+    (17, "XVII"),
+    (18, "XVIII"),
+    (19, "XIX"),
+    (20, "XX"),
+    (21, "XXI"),
+    (22, "XXII"),
+    (23, "XXIII"),
+    (24, "XXIV"),
+    (25, "XXV"),
+    (20, "XX"),
+    (25, "XXV"),
+    (30, "XXX"),
+    (35, "XXXV"),
+    (40, "XL"),
+    (45, "XLV"),
+    (50, "L"),
+    (55, "LV"),
+    (60, "LX"),
+    (65, "LXV"),
+    (70, "LXX"),
+    (75, "LXXV"),
+    (80, "LXXX"),
+    (85, "LXXXV"),
+    (90, "XC"),
+    (95, "XCV"),
+    (100, "C"),
+    (105, "CV"),
+    (110, "CX"),
+    (115, "CXV"),
+    (120, "CXX"),
+    (125, "CXXV"),
+    (130, "CXXX"),
+    (135, "CXXXV"),
+    (140, "CXL"),
+    (100, "C"),
+    (125, "CXXV"),
+    (150, "CL"),
+    (175, "CLXXV"),
+    (200, "CC"),
+    (225, "CCXXV"),
+    (250, "CCL"),
+    (275, "CCLXXV"),
+    (300, "CCC"),
+    (325, "CCCXXV"),
+    (350, "CCCL"),
+    (375, "CCCLXXV"),
+    (400, "CD"),
+    (425, "CDXXV"),
+    (450, "CDL"),
+    (475, "CDLXXV"),
+    (500, "D"),
+    (525, "DXXV"),
+    (550, "DL"),
+    (575, "DLXXV"),
+    (600, "DC"),
+    (625, "DCXXV"),
+    (650, "DCL"),
+    (675, "DCLXXV"),
+    (700, "DCC"),
+    (750, "DCCL"),
+    (800, "DCCC"),
+    (825, "DCCCXXV"),
+    (900, "CM"),
+    (975, "CMLXXV"),
+    (1000, "M"),
+    (1050, "ML"),
+    (1125, "MCXXV"),
+    (1200, "MCC"),
+    (1275, "MCCLXXV"),
+    (1350, "MCCCL"),
+    (1425, "MCDXXV"),
+    (1500, "MD"),
+    (1575, "MDLXXV"),
+    (1650, "MDCL"),
+    (1725, "MDCCXXV"),
+    (1800, "MDCCC"),
+    (1875, "MDCCCLXXV"),
+    (1950, "MCML"),
+    (2025, "MMXXV"),
+    (2100, "MMC"),
+    (2175, "MMCLXXV"),
+    (2250, "MMCCL"),
+    (2325, "MMCCCXXV"),
+    (2400, "MMCD"),
+    (2475, "MMCDLXXV"),
+    (2550, "MMDL"),
+    (14, "XIV"),
+    (79, "LXXIX"),
+    (225, "CCXXV"),
+    (845, "DCCCXLV"),
+    (2022, "MMXXII"),
+    (2019, "MMXIX"),
+    (0, "")]
 
 
-def test_convert_roman_to_number():
-    assert roman_to_number("I") == 1
-    assert roman_to_number("II") == 2
-    assert roman_to_number("III") == 3
-    assert roman_to_number("IV") == 4
-    assert roman_to_number("V") == 5
-    assert roman_to_number("VI") == 6
-    assert roman_to_number("VII") == 7
-    assert roman_to_number("VIII") == 8
-    assert roman_to_number("IX") == 9
-    assert roman_to_number("X") == 10
-    assert roman_to_number("XI") == 11
-    assert roman_to_number("XII") == 12
-    assert roman_to_number("XIII") == 13
-    assert roman_to_number("XIV") == 14
-    assert roman_to_number("XV") == 15
-    assert roman_to_number("XVI") == 16
-    assert roman_to_number("XVII") == 17
-    assert roman_to_number("XVIII") == 18
-    assert roman_to_number("XIX") == 19
-    assert roman_to_number("XX") == 20
-    assert roman_to_number("XXI") == 21
-    assert roman_to_number("XXII") == 22
-    assert roman_to_number("XXIII") == 23
-    assert roman_to_number("XXIV") == 24
-    assert roman_to_number("XXV") == 25
-    assert roman_to_number("XX") == 20
-    assert roman_to_number("XXV") == 25
-    assert roman_to_number("XXX") == 30
-    assert roman_to_number("XXXV") == 35
-    assert roman_to_number("XL") == 40
-    assert roman_to_number("XLV") == 45
-    assert roman_to_number("L") == 50
-    assert roman_to_number("LV") == 55
-    assert roman_to_number("LX") == 60
-    assert roman_to_number("LXV") == 65
-    assert roman_to_number("LXX") == 70
-    assert roman_to_number("LXXV") == 75
-    assert roman_to_number("LXXX") == 80
-    assert roman_to_number("LXXXV") == 85
-    assert roman_to_number("XC") == 90
-    assert roman_to_number("XCV") == 95
-    assert roman_to_number("C") == 100
-    assert roman_to_number("CV") == 105
-    assert roman_to_number("CX") == 110
-    assert roman_to_number("CXV") == 115
-    assert roman_to_number("CXX") == 120
-    assert roman_to_number("CXXV") == 125
-    assert roman_to_number("CXXX") == 130
-    assert roman_to_number("CXXXV") == 135
-    assert roman_to_number("CXL") == 140
-    assert roman_to_number("C") == 100
-    assert roman_to_number("CXXV") == 125
-    assert roman_to_number("CL") == 150
-    assert roman_to_number("CLXXV") == 175
-    assert roman_to_number("CC") == 200
-    assert roman_to_number("CCXXV") == 225
-    assert roman_to_number("CCL") == 250
-    assert roman_to_number("CCLXXV") == 275
-    assert roman_to_number("CCC") == 300
-    assert roman_to_number("CCCXXV") == 325
-    assert roman_to_number("CCCL") == 350
-    assert roman_to_number("CCCLXXV") == 375
-    assert roman_to_number("CD") == 400
-    assert roman_to_number("CDXXV") == 425
-    assert roman_to_number("CDL") == 450
-    assert roman_to_number("CDLXXV") == 475
-    assert roman_to_number("D") == 500
-    assert roman_to_number("DXXV") == 525
-    assert roman_to_number("DL") == 550
-    assert roman_to_number("DLXXV") == 575
-    assert roman_to_number("DC") == 600
-    assert roman_to_number("DCXXV") == 625
-    assert roman_to_number("DCL") == 650
-    assert roman_to_number("DCLXXV") == 675
-    assert roman_to_number("DCC") == 700
-    assert roman_to_number("DCCL") == 750
-    assert roman_to_number("DCCCXXV") == 825
-    assert roman_to_number("CM") == 900
-    assert roman_to_number("CMLXXV") == 975
-    assert roman_to_number("ML") == 1050
-    assert roman_to_number("MCXXV") == 1125
-    assert roman_to_number("MCC") == 1200
-    assert roman_to_number("MCCLXXV") == 1275
-    assert roman_to_number("MCCCL") == 1350
-    assert roman_to_number("MCDXXV") == 1425
-    assert roman_to_number("MD") == 1500
-    assert roman_to_number("MDLXXV") == 1575
-    assert roman_to_number("MDCL") == 1650
-    assert roman_to_number("MDCCXXV") == 1725
-    assert roman_to_number("MDCCC") == 1800
-    assert roman_to_number("MDCCCLXXV") == 1875
-    assert roman_to_number("MCML") == 1950
-    assert roman_to_number("MMXXV") == 2025
-    assert roman_to_number("MMC") == 2100
-    assert roman_to_number("MMCLXXV") == 2175
-    assert roman_to_number("MMCCL") == 2250
-    assert roman_to_number("MMCCCXXV") == 2325
-    assert roman_to_number("MMCD") == 2400
-    assert roman_to_number("MMCDLXXV") == 2475
-    assert roman_to_number("MMDL") == 2550
+@pytest.mark.parametrize("number, roman", test_data)
+def test_convert_a_number_to_roman_numeral(number, roman):
+    assert number_to_roman(number) == roman
 
-    assert roman_to_number("MCMLXXXIX") == 1989
-    assert roman_to_number("") == 0
+
+@pytest.mark.parametrize("number, roman", test_data)
+def test_convert_roman_numeral_to_a_number(number, roman):
+    assert roman_to_number(roman) == number
 
 
 def test_add_two_roman_numerals():
