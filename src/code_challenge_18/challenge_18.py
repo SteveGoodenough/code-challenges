@@ -40,25 +40,17 @@ def get_description(linked_list):
 
 
 def add_to_list(linked_list, new_item):
-    return extend_node(linked_list, Node(new_item))
-
-
-def extend_node(source_list, target_list):
-    if source_list is None:
-        return target_list
+    if linked_list is None:
+        return Node(new_item)
     else:
-        return Node(source_list.item, extend_node(source_list.next, target_list))
+        return Node(linked_list.item, add_to_list(linked_list.next, new_item))
 
 
 def create_integer_list(linked_list):
-    return node_to_nodeint(linked_list)
-
-
-def node_to_nodeint(source_list):
-    if source_list is None:
+    if linked_list is None:
         return None
     else:
-        if source_list.item.isnumeric():
-            return IntegerNode(int(source_list.item), node_to_nodeint(source_list.next))
+        if linked_list.item.isnumeric():
+            return IntegerNode(int(linked_list.item), create_integer_list(linked_list.next))
         else:
-            return IntegerNode(0, node_to_nodeint(source_list.next))
+            return IntegerNode(0, create_integer_list(linked_list.next))
