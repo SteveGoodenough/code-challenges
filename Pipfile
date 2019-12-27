@@ -11,6 +11,7 @@ code-challenges = {editable = true,path = "."}
 pytest-cov = "*"
 flake8 = "*"
 rope = "*"
+typed-ast = ">=1.4.0"
 
 [requires]
 python_version = "3.7"
