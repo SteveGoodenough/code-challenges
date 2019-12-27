@@ -44,5 +44,10 @@ def test_convert_another_list_of_strings_with_non_numeric_to_integers():
 def test_reverse_a_list():
     base_list = Node("hello", Node("world", Node("!")))
     test_list = reverse_list(base_list)
-    print(len(test_list))
     assert get_description(test_list) == "! world hello None"
+
+
+def test_reverse_the_challenge_example_list():
+    base_list = Node("a", Node("b", Node("c", Node("d", Node("e", Node("f"))))))
+    test_list = reverse_list(base_list)
+    assert get_description(test_list) == "f e d c b a None"

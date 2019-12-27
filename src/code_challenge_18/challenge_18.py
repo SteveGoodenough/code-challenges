@@ -1,21 +1,6 @@
 from dataclasses import dataclass
 from typing import Any
 
-# Create a function that takes the first node of a linked list of strings and returns a string
-# that can be printed out to show all of the members of the list.
-# Using the sample code above getDescription(firstNode) should return "hello world null".
-
-# Create a function to add a value onto the end of a list.
-# So addToList(firstNode, "!") and then running getDescription(firstNode)
-# should result in "hello world ! null".
-
-# Create a function that takes a linked list of strings and returns a linked list of integers.
-# If the string cannot be converted to an integer, convert it to 0.
-
-# Create a function that takes a linked list of strings and reverses it.
-# So a list with a description of "a b c d e f null" would be converted to a list with a
-# description of "f e d c b a null".
-
 
 @dataclass
 class Node:
@@ -24,15 +9,6 @@ class Node:
 
     def __str__(self):
         return f'{self.item} {self.next}'
-
-    def __getitem__(self, index):
-        if index == 0:
-            return self.item
-        else:
-            return self.next[index - 1]
-
-    def __len__(self):
-        return 1 + len(self.next) if self.next is not None else 0
 
 
 @dataclass
@@ -66,7 +42,7 @@ def create_integer_list(linked_list):
 
 
 def reverse_list(linked_list):
-    new_list = Node(linked_list[len(linked_list)])
-    for x in range(len(linked_list) - 1, -1, -1):
-        new_list = add_to_list(new_list, linked_list[x])
-    return new_list
+    if linked_list is None:
+        return None
+    else:
+        return add_to_list(reverse_list(linked_list.next), linked_list.item)

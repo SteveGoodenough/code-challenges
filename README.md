@@ -1,5 +1,32 @@
 # code-challenges
 
+## code-challenge-18
+https://coding-challenges.jl-engineering.net/challenges/challenge-18/
+
+* Create a function that takes the first node of a linked list of strings and returns a string
+that can be printed out to show all of the members of the list.
+Using the sample code above getDescription(firstNode) should return "hello world null".
+
+* Create a function to add a value onto the end of a list.
+So addToList(firstNode, "!") and then running getDescription(firstNode) should result in "hello world ! null".
+
+* Create a function that takes a linked list of strings and returns a linked list of integers.
+If the string cannot be converted to an integer, convert it to 0.
+
+* Create a function that takes a linked list of strings and reverses it.
+So a list with a description of "a b c d e f null" would be converted to a list with a description of "f e d c b a null".
+
+I substituted `None` for `null` in the examples as this is python.
+
+I ended up using recursion to solve these challenges which works ok.
+
+For challenge three I really could have used the same class to hold the integer values as python is not strict about types but it's more readable having an Integer Node list.
+
+The last challenge was tough as linked lists are really only for reading sequentially from start to end (unless you use a linked list with a pointer linking to the previuous item) but then I realised I had an append function which I could use while reading the list from front to end to append each item to the new list, again using recursion to work through the linked list.
+
+I think I could have had all these functions as functions of the class (like `__str__`) but the challenge did ask for _external_ functions.
+
+
 ## code-challenge-16
 https://coding-challenges.jl-engineering.net/challenges/challenge-16/
 
