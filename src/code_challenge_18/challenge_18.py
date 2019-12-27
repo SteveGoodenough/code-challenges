@@ -25,6 +25,15 @@ class Node:
     def __str__(self):
         return f'{self.item} {self.next}'
 
+    def __getitem__(self, index):
+        if index == 0:
+            return self.item
+        else:
+            return self.next[index - 1]
+
+    def __len__(self):
+        return 1 + len(self.next) if self.next is not None else 0
+
 
 @dataclass
 class IntegerNode:
@@ -54,3 +63,10 @@ def create_integer_list(linked_list):
             return IntegerNode(int(linked_list.item), create_integer_list(linked_list.next))
         else:
             return IntegerNode(0, create_integer_list(linked_list.next))
+
+
+def reverse_list(linked_list):
+    new_list = Node(linked_list[len(linked_list)])
+    for x in range(len(linked_list) - 1, -1, -1):
+        new_list = add_to_list(new_list, linked_list[x])
+    return new_list

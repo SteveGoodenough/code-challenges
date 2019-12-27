@@ -2,6 +2,7 @@ from code_challenge_18.challenge_18 import Node
 from code_challenge_18.challenge_18 import get_description
 from code_challenge_18.challenge_18 import add_to_list
 from code_challenge_18.challenge_18 import create_integer_list
+from code_challenge_18.challenge_18 import reverse_list
 
 
 def test_get_description_of_a_list():
@@ -40,17 +41,8 @@ def test_convert_another_list_of_strings_with_non_numeric_to_integers():
     assert get_description(test_list) == "0 2 0 None"
 
 
-# def test_convert_list_of_a_strings_to_integers():
-#     base_list = Nodeint(1, Nodeint(2))
-#     test_list = create_integer_list(base_list)
-#     assert get_description(test_list) == "1 None"
-#     assert test_list.item == 1
-
-    # aNode = Node("world")
-    # anotherNode = Node("hello", aNode)
-
-    # def __getitem__(self, item):
-    #     if item == 0:
-    #         return self.item
-    #     else:
-    #         return self.next[item - 1]
+def test_reverse_a_list():
+    base_list = Node("hello", Node("world", Node("!")))
+    test_list = reverse_list(base_list)
+    print(len(test_list))
+    assert get_description(test_list) == "! world hello None"
