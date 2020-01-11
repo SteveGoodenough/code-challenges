@@ -51,4 +51,13 @@ def test_move_trolley_initial_call():
         'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR',
         'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR']
 
+
+def test_move_trolley_east_from_initial_location():
+    view, referenece_id = move_trolley('M', "MToxOkU6MTIzNDU2")
+    assert referenece_id == "MjoxOkU6MTIzNDU2"
+    assert view == [
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR',
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR']
+
 # "MToxOkU6MTIzNDU2" 1, 1, E
+# "MjoxOkU6MTIzNDU2" 2, 1, E

@@ -17,8 +17,9 @@ def move_trolley(command='', reference_id=''):
     map = MAP.split('\n')
     if command != '':
         x, y, orientation, trolley_id = decode_reference_id(reference_id)
+        print(f'{x},{y},{orientation}')
         if command == 'M':
-            pass
+            x += 1
         elif command == 'L':
             pass
         elif command == 'R':
@@ -36,9 +37,10 @@ def move_trolley(command='', reference_id=''):
 
 
 def generate_view(map, x, y, orientation):
-    row_above = map[x-1][y+1::]
-    row = map[x][y+1::].replace(' ', 'O')
-    row_below = map[x+1][y+1::]
+    print(f'generate view:{x}, {y}, {orientation}')
+    row_above = map[y-1][x+1::]
+    row = map[y][x+1::].replace(' ', 'O')
+    row_below = map[y+1][x+1::]
     view = []
     for idx, val in enumerate(row):
         if val == 'O':
