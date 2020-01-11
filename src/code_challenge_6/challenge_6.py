@@ -21,5 +21,5 @@ def an_even_more_dodgy_function():
 def my_filter(input_list, function):
     try:
         return list(item for item in input_list if function(item))
-    except:
+    except Exception:
         return input_list
