@@ -35,7 +35,7 @@ def test_decode_invalid_reference_id_not_encoded_string():
 
 def test_decode_invalid_reference_id_not_enough_elements():
     reference_id = "MToxOlM="
-    with pytest.raises(ValueError, match='Not enough elements in reference id'):
+    with pytest.raises(ValueError, match='Not correct number of elements in reference id'):
         x, y, orientation, trolley_id = decode_reference_id(reference_id)
 
 
@@ -47,4 +47,8 @@ def test_move_trolley_invalid_command():
 def test_move_trolley_initial_call():
     view, referenece_id = move_trolley()
     assert referenece_id == "MToxOkU6MTIzNDU2"
-    assert view == ['O']
+    assert view == [
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR',
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR']
+
+# "MToxOkU6MTIzNDU2" 1, 1, E
