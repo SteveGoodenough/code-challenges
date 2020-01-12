@@ -1,5 +1,14 @@
 # code-challenges
 
+## code-challenge-19
+https://coding-challenges.jl-engineering.net/challenges/challenge-19/
+
+Reference id is a string containing the x, y coordinates, the orientation and the trolley id, each separated with a colon.
+
+For obscuring the generated reference id I used base64 encode/decode. Not complex but achieves what was specified.
+
+I took the decision to ignore a move command if the square wasn't clear, therefore you get the same reference id back. 
+
 ## code-challenge-18
 https://coding-challenges.jl-engineering.net/challenges/challenge-18/
 
