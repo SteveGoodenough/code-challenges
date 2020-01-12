@@ -3,10 +3,22 @@ from code_challenge_19.challenge_19 import create_reference_id
 from code_challenge_19.challenge_19 import decode_reference_id
 import pytest
 
+TEST_MAP = \
+    "*************************\n" +\
+    "*                       *\n" +\
+    "* ********** ********** *\n" +\
+    "* ********** ********** *\n" +\
+    "*                       *\n" +\
+    "* ********** ********** *\n" +\
+    "* ********** ********** *\n" +\
+    "* ********** ********** *\n" +\
+    "*                       *\n" +\
+    "*************************\n"
 
-# def test_go():
-#     go()
-#     assert 1 == 2
+
+@pytest.fixture(autouse=True)
+def set_map(mocker):
+    mocker.patch('code_challenge_19.challenge_19.MAP', TEST_MAP)
 
 
 def test_encode_reference_id():
@@ -59,5 +71,30 @@ def test_move_trolley_east_from_initial_location():
         'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR',
         'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OR']
 
+
+def test_move_trolley_east_from_middle_row():
+    view, referenece_id = move_trolley('M', "NDo0OkU6MTIzNDU2")
+    assert referenece_id == "NTo0OkU6MTIzNDU2"
+    assert view == [
+        'O', 'O', 'O', 'O', 'O', 'O', 'OLR',
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OLR']
+
+
+def test_move_trolley_east_from_bottom_row():
+    view, referenece_id = move_trolley('M', "NDo4OkU6MTIzNDU2")
+    assert referenece_id == "NTo4OkU6MTIzNDU2"
+    assert view == [
+        'O', 'O', 'O', 'O', 'O', 'O', 'OL',
+        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OL']
+
+
+def test_move_trolley_east_is_blocked_so_move_ignored():
+    view, referenece_id = move_trolley('M', "MToyOkU6MTIzNDU2")
+    assert referenece_id == "MToyOkU6MTIzNDU2"
+    assert view == []
+
 # "MToxOkU6MTIzNDU2" 1, 1, E
 # "MjoxOkU6MTIzNDU2" 2, 1, E
+# "MToyOkU6MTIzNDU2" 1, 2, E
+# "NDo0OkU6MTIzNDU2" 4, 4, E
+# "NDo4OkU6MTIzNDU2" 4, 8, E
