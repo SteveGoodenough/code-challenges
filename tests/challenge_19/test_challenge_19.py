@@ -1,6 +1,7 @@
-from code_challenge_19.challenge_19 import move_trolley
 from code_challenge_19.challenge_19 import create_reference_id
 from code_challenge_19.challenge_19 import decode_reference_id
+from code_challenge_19.challenge_19 import move_trolley
+from code_challenge_19.challenge_19 import rotate_map
 import pytest
 
 TEST_MAP = \
@@ -98,3 +99,19 @@ def test_move_trolley_east_is_blocked_so_move_ignored():
 # "MToyOkU6MTIzNDU2" 1, 2, E
 # "NDo0OkU6MTIzNDU2" 4, 4, E
 # "NDo4OkU6MTIzNDU2" 4, 8, E
+
+
+def test_rotate(mocker):
+    test_map = \
+        " ***\n" +\
+        "* * \n" +\
+        "** *\n" +\
+        "*** \n"
+    mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
+    rotated_map = rotate_map()
+    assert rotated_map == (
+        ('*', '*', '*', ' '),
+        ('*', '*', ' ', '*'),
+        ('*', ' ', '*', '*'),
+        (' ', '*', ' ', '*'),
+    )
