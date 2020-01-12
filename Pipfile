@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 pytest = "*"
+pytest-mock = "*"
 pytest-watch = "*"
 code-challenges = {editable = true,path = "."}
 pytest-cov = "*"
