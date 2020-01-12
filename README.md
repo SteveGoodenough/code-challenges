@@ -25,6 +25,14 @@ Refactoring this using the reversed function makes it more readable, i.e. `retur
 
 For rotating 180 and 270 degrees, I just repeat the turn 90 function. Maybe a future refactor can make this more efficient but I got bored of trying different approaches for now.
 
+Rotating the map means the trolley location has to alter too from the passed x, y coordinates.
+| Rotation | new x   | new y   |
+|---------:|---------|---------|
+|        0 | x       | y       |
+|       90 | depth-y | x       |
+|      180 | width-x | depth-y |
+|      270 | y       | width-x |
+
 ## code-challenge-18
 https://coding-challenges.jl-engineering.net/challenges/challenge-18/
 
