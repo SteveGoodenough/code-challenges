@@ -68,7 +68,9 @@ def decode_reference_id(reference_id):
         raise ValueError('Not correct number of elements in reference id')
     return int(decoded_list[0]), int(decoded_list[1]), decoded_list[2], decoded_list[3]
 
+# rotate opposite, e.g. 270 degrees: rotated = list(zip(*reversed(original)))
+
 
 def rotate_map():
-    map = tuple(tuple(line) for line in MAP[:-1].split('\n'))
-    return tuple(zip(*map[::-1]))
+    map = list(list(line) for line in MAP[:-1].split('\n'))
+    return [list(line) for line in zip(*map[::-1])]

@@ -9,6 +9,8 @@ For obscuring the generated reference id I used base64 encode/decode. Not comple
 
 I took the decision to ignore a move command if the square wasn't clear, therefore you get the same reference id back. 
 
+Rotating the map took some doing but found this one liner on the net that rotates an array using the `zip` function in combination with reversing a list using `[::-1]`. `zip` returnes tuples but can then list comprehension to convert back to a list of lists: `[list(line) for line in zip(*map[::-1])]`
+
 ## code-challenge-18
 https://coding-challenges.jl-engineering.net/challenges/challenge-18/
 

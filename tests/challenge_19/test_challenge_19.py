@@ -109,9 +109,9 @@ def test_rotate(mocker):
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     rotated_map = rotate_map()
-    assert rotated_map == (
-        ('*', '*', '*', ' '),
-        ('*', '*', ' ', '*'),
-        ('*', ' ', '*', '*'),
-        (' ', '*', ' ', '*'),
-    )
+    assert rotated_map == [
+        ['*', '*', '*', ' '],
+        ['*', '*', ' ', '*'],
+        ['*', ' ', '*', '*'],
+        [' ', '*', ' ', '*'],
+    ]
