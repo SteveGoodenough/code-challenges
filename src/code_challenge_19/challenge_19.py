@@ -11,6 +11,7 @@ MAP = \
     "* ********** ********** *\n" +\
     "*                       *\n" +\
     "*************************\n"
+ROTATIONS = {'E': 0, 'N': 1, 'W': 2, 'S': 3}
 
 
 def move_trolley(command='', reference_id=''):
@@ -68,9 +69,9 @@ def decode_reference_id(reference_id):
         raise ValueError('Not correct number of elements in reference id')
     return int(decoded_list[0]), int(decoded_list[1]), decoded_list[2], decoded_list[3]
 
-# rotate opposite, e.g. 270 degrees: rotated = list(zip(*reversed(original)))
 
-
-def rotate_map():
+def rotate_map(orientation):
     map = list(list(line) for line in MAP[:-1].split('\n'))
-    return [list(line) for line in zip(*map[::-1])]
+    for _ in range(ROTATIONS.get(orientation, 0)):
+        map = [list(line) for line in zip(*reversed(map))]
+    return map

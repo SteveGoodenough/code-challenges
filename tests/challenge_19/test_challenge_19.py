@@ -101,17 +101,80 @@ def test_move_trolley_east_is_blocked_so_move_ignored():
 # "NDo4OkU6MTIzNDU2" 4, 8, E
 
 
-def test_rotate(mocker):
+def test_rotate_E_is_0_degrees(mocker):
     test_map = \
         " ***\n" +\
         "* * \n" +\
         "** *\n" +\
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
-    rotated_map = rotate_map()
+    rotated_map = rotate_map('E')
+    assert rotated_map == [
+        [' ', '*', '*', '*'],
+        ['*', ' ', '*', ' '],
+        ['*', '*', ' ', '*'],
+        ['*', '*', '*', ' '],
+    ]
+
+
+def test_rotate_N_is_90_degrees(mocker):
+    test_map = \
+        " ***\n" +\
+        "* * \n" +\
+        "** *\n" +\
+        "*** \n"
+    mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
+    rotated_map = rotate_map('N')
     assert rotated_map == [
         ['*', '*', '*', ' '],
         ['*', '*', ' ', '*'],
         ['*', ' ', '*', '*'],
         [' ', '*', ' ', '*'],
+    ]
+
+
+def test_rotate_W_is_180_degrees(mocker):
+    test_map = \
+        " ***\n" +\
+        "* * \n" +\
+        "** *\n" +\
+        "*** \n"
+    mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
+    rotated_map = rotate_map('W')
+    assert rotated_map == [
+        [' ', '*', '*', '*'],
+        ['*', ' ', '*', '*'],
+        [' ', '*', ' ', '*'],
+        ['*', '*', '*', ' '],
+    ]
+
+
+def test_rotate_S_is_270_degrees(mocker):
+    test_map = \
+        " ***\n" +\
+        "* * \n" +\
+        "** *\n" +\
+        "*** \n"
+    mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
+    rotated_map = rotate_map('S')
+    assert rotated_map == [
+        ['*', ' ', '*', ' '],
+        ['*', '*', ' ', '*'],
+        ['*', ' ', '*', '*'],
+        [' ', '*', '*', '*'],
+    ]
+
+
+def test_rotate_using_invalid_orientation_returns_same_map(mocker):
+    test_map = \
+        " **\n" +\
+        "* *\n" +\
+        "** \n"
+    mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
+    rotated_map = rotate_map('X')
+    print(rotated_map)
+    assert rotated_map == [
+        [' ', '*', '*'],
+        ['*', ' ', '*'],
+        ['*', '*', ' '],
     ]

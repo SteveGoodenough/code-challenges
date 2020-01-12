@@ -19,7 +19,11 @@ That means we can use the following rotations to allow for all four directions:
 |      180 | left   | W           |
 |      270 | down   | S           |
 
-Rotating the map took some doing but I found this one liner on the net that rotates an array using the `zip` function in combination with reversing a list using `[::-1]`. `zip` returns tuples but can then list comprehension to convert back to a list of lists: `[list(line) for line in zip(*map[::-1])]`
+Rotating the map took some doing but I found this one liner on the net that rotates an array using the `zip` function in combination with reversing a list using `[::-1]`. `zip` returns tuples but can then list comprehension to convert back to a list of lists: `[list(line) for line in zip(*map[::-1])]`. 
+
+Refactoring this using the reversed function makes it more readable, i.e. `return [list(line) for line in zip(*reversed(map))]`
+
+For rotating 180 and 270 degrees, I just repeat the turn 90 function. Maybe a future refactor can make this more efficient but I got bored of trying different approaches for now.
 
 ## code-challenge-18
 https://coding-challenges.jl-engineering.net/challenges/challenge-18/
