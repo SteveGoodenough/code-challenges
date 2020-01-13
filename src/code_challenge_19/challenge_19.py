@@ -72,9 +72,15 @@ def decode_reference_id(reference_id):
     return int(decoded_list[0]), int(decoded_list[1]), decoded_list[2], decoded_list[3]
 
 
-def rotate_map(map, x, y, orientation):
+def rotate_map_and_coordinates(map, x, y, orientation):
+    rotated_x = x
+    rotated_y = y
     rotated_map = map
-    print(f'{orientation} {ROTATIONS.get(orientation, 0)}')
     for _ in range(ROTATIONS.get(orientation, 0)):
+        rotated_x, rotated_y = rotate_coordinates_90_degrees(rotated_x, rotated_y, len(rotated_map) - 1)
         rotated_map = [list(line) for line in zip(*reversed(rotated_map))]
-    return rotated_map
+    return rotated_map, rotated_x, rotated_y
+
+
+def rotate_coordinates_90_degrees(x, y, width):
+    return width - y, x

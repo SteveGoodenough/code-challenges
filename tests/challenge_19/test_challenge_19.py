@@ -1,7 +1,7 @@
 from code_challenge_19.challenge_19 import create_reference_id
 from code_challenge_19.challenge_19 import decode_reference_id
 from code_challenge_19.challenge_19 import move_trolley
-from code_challenge_19.challenge_19 import rotate_map
+from code_challenge_19.challenge_19 import rotate_map_and_coordinates
 from code_challenge_19.challenge_19 import extract_map
 import pytest
 
@@ -124,13 +124,15 @@ def test_rotate_E_is_0_degrees(mocker):
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     map = extract_map()
-    rotated_map = rotate_map(map, 1, 1, 'E')
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, 1, 1, 'E')
     assert rotated_map == [
         [' ', '*', '*', '*'],
         ['*', ' ', '*', ' '],
         ['*', '*', ' ', '*'],
         ['*', '*', '*', ' '],
     ]
+    assert rotated_x == 1
+    assert rotated_y == 1
 
 
 def test_rotate_N_is_90_degrees(mocker):
@@ -141,13 +143,15 @@ def test_rotate_N_is_90_degrees(mocker):
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     map = extract_map()
-    rotated_map = rotate_map(map, 1, 1, 'N')
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, 1, 1, 'N')
     assert rotated_map == [
         ['*', '*', '*', ' '],
         ['*', '*', ' ', '*'],
         ['*', ' ', '*', '*'],
         [' ', '*', ' ', '*'],
     ]
+    assert rotated_x == 2
+    assert rotated_y == 1
 
 
 def test_rotate_W_is_180_degrees(mocker):
@@ -158,13 +162,15 @@ def test_rotate_W_is_180_degrees(mocker):
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     map = extract_map()
-    rotated_map = rotate_map(map, 1, 1, 'W')
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, 1, 1, 'W')
     assert rotated_map == [
         [' ', '*', '*', '*'],
         ['*', ' ', '*', '*'],
         [' ', '*', ' ', '*'],
         ['*', '*', '*', ' '],
     ]
+    assert rotated_x == 2
+    assert rotated_y == 2
 
 
 def test_rotate_S_is_270_degrees(mocker):
@@ -175,13 +181,15 @@ def test_rotate_S_is_270_degrees(mocker):
         "*** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     map = extract_map()
-    rotated_map = rotate_map(map, 1, 1, 'S')
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, 1, 1, 'S')
     assert rotated_map == [
         ['*', ' ', '*', ' '],
         ['*', '*', ' ', '*'],
         ['*', ' ', '*', '*'],
         [' ', '*', '*', '*'],
     ]
+    assert rotated_x == 1
+    assert rotated_y == 2
 
 
 def test_rotate_using_invalid_orientation_returns_same_map(mocker):
@@ -191,9 +199,11 @@ def test_rotate_using_invalid_orientation_returns_same_map(mocker):
         "** \n"
     mocker.patch('code_challenge_19.challenge_19.MAP', test_map)
     map = extract_map()
-    rotated_map = rotate_map(map, 1, 1, 'X')
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, 1, 1, 'X')
     assert rotated_map == [
         [' ', '*', '*'],
         ['*', ' ', '*'],
         ['*', '*', ' '],
     ]
+    assert rotated_x == 1
+    assert rotated_y == 1
