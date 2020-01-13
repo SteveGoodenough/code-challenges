@@ -15,7 +15,7 @@ ROTATIONS = {'E': 0, 'N': 1, 'W': 2, 'S': 3}
 
 
 def move_trolley(command='', reference_id=''):
-    map = MAP.split('\n')
+    map = extract_map()
     if command != '':
         x, y, orientation, trolley_id = decode_reference_id(reference_id)
         if command == 'M':
@@ -37,16 +37,18 @@ def move_trolley(command='', reference_id=''):
     return view, create_reference_id(x, y, orientation, trolley_id)
 
 
+def extract_map():
+    return list(list(line) for line in MAP[:-1].split('\n'))
+
+
 def generate_view(map, x, y, orientation):
-    row_above = map[y-1][x+1::]
-    row = map[y][x+1::].replace(' ', 'O')
-    row_below = map[y+1][x+1::]
     view = []
-    for idx, val in enumerate(row):
-        if val == 'O':
-            if row_above[idx] == ' ':
+    for idx, val in enumerate(map[y][x+1::]):
+        if val == ' ':
+            val = "O"
+            if map[y-1][x+idx+1] == ' ':
                 val += 'L'
-            if row_below[idx] == ' ':
+            if map[y+1][x+idx+1] == ' ':
                 val += 'R'
             view.append(val)
         else:
@@ -70,8 +72,9 @@ def decode_reference_id(reference_id):
     return int(decoded_list[0]), int(decoded_list[1]), decoded_list[2], decoded_list[3]
 
 
-def rotate_map(orientation):
-    map = list(list(line) for line in MAP[:-1].split('\n'))
+def rotate_map(map, x, y, orientation):
+    rotated_map = map
+    print(f'{orientation} {ROTATIONS.get(orientation, 0)}')
     for _ in range(ROTATIONS.get(orientation, 0)):
-        map = [list(line) for line in zip(*reversed(map))]
-    return map
+        rotated_map = [list(line) for line in zip(*reversed(rotated_map))]
+    return rotated_map
