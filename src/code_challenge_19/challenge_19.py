@@ -16,15 +16,12 @@ MOVEMENT = {'E': (1, 0), 'N': (0, -1), 'W': (-1, 0), 'S': (0, 1)}
 DIRECTIONS = 'nESWNe'
 
 
-def move_trolley(command='', reference_id=''):
+def update_trolley(command='', reference_id=''):
     map = extract_map()
     if command != '':
         x, y, orientation, trolley_id = decode_reference_id(reference_id)
         if command == 'M':
-            x_offset, y_offset = MOVEMENT.get(orientation)
-            if map[y + y_offset][x + x_offset] == ' ':
-                x += x_offset
-                y += y_offset
+            x, y = move_trolley(map, x, y, orientation)
         elif command == 'L':
             orientation = DIRECTIONS[DIRECTIONS.find(orientation) - 1].upper()
         elif command == 'R':
@@ -42,6 +39,14 @@ def move_trolley(command='', reference_id=''):
 
 def extract_map():
     return list(list(line) for line in MAP[:-1].split('\n'))
+
+
+def move_trolley(map, x, y, orientation):
+    x_offset, y_offset = MOVEMENT.get(orientation)
+    if map[y + y_offset][x + x_offset] == ' ':
+        x += x_offset
+        y += y_offset
+    return x, y
 
 
 def generate_view(map, x, y, orientation):
