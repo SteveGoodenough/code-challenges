@@ -6,6 +6,7 @@ from code_challenge_19.challenge_19 import extract_map
 import pytest
 
 # "MToxOkU6MTIzNDU2" 1, 1, E
+# "MToxOlM6MTIzNDU2" 1, 1, S
 # "MjoxOkU6MTIzNDU2" 2, 1, E
 # "MToyOkU6MTIzNDU2" 1, 2, E
 # "NDo0OkU6MTIzNDU2" 4, 4, E
@@ -73,12 +74,12 @@ def test_extract_map(mocker):
     ]
 
 
-def test_move_trolley_invalid_command():
+def test_trolley_invalid_command():
     with pytest.raises(ValueError, match='Unknown command'):
         view, reference_id = move_trolley('X', "MToxOkU6MTIzNDU2")
 
 
-def test_move_trolley_initial_call():
+def test_trolley_initial_call():
     view, reference_id = move_trolley()
     assert reference_id == "MToxOkU6MTIzNDU2"
     assert view == [
@@ -207,3 +208,23 @@ def test_rotate_using_invalid_orientation_returns_same_map(mocker):
     ]
     assert rotated_x == 1
     assert rotated_y == 1
+
+
+def test_trolley_turn_right():
+    reference_id = create_reference_id(1, 1, "E", "123456")
+    view, reference_id = move_trolley('R', reference_id)
+    x, y, orientation, trolley_id = decode_reference_id(reference_id)
+    assert x == 1
+    assert y == 1
+    assert orientation == "S"
+    assert view == ['O', 'O', 'OL', 'O', 'O', 'O', 'OL']
+
+
+def test_trolley_turn_left():
+    reference_id = create_reference_id(1, 8, "E", "123456")
+    view, reference_id = move_trolley('L', reference_id)
+    x, y, orientation, trolley_id = decode_reference_id(reference_id)
+    assert x == 1
+    assert y == 8
+    assert orientation == "N"
+    assert view == ['O', 'O', 'O', 'OR', 'O', 'O', 'OR']

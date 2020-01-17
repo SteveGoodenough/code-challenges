@@ -12,6 +12,8 @@ MAP = \
     "*                       *\n" +\
     "*************************\n"
 ROTATIONS = {'E': 0, 'N': 1, 'W': 2, 'S': 3}
+MOVEMENT = {'E': (1, 0), 'N': (0, -1), 'W': (-1, 0), 'S': (0, 1)}
+DIRECTIONS = 'nESWNe'
 
 
 def move_trolley(command='', reference_id=''):
@@ -19,12 +21,14 @@ def move_trolley(command='', reference_id=''):
     if command != '':
         x, y, orientation, trolley_id = decode_reference_id(reference_id)
         if command == 'M':
-            if map[y][x+1] == ' ':
-                x += 1
+            x_offset, y_offset = MOVEMENT.get(orientation)
+            if map[y + y_offset][x + x_offset] == ' ':
+                x += x_offset
+                y += y_offset
         elif command == 'L':
-            pass
+            orientation = DIRECTIONS[DIRECTIONS.find(orientation) - 1].upper()
         elif command == 'R':
-            pass
+            orientation = DIRECTIONS[DIRECTIONS.find(orientation) + 1].upper()
         else:
             raise ValueError('Unknown command')
     else:
@@ -32,7 +36,6 @@ def move_trolley(command='', reference_id=''):
         y = 1
         orientation = 'E'
         trolley_id = "123456"
-
     view = generate_view(map, x, y, orientation)
     return view, create_reference_id(x, y, orientation, trolley_id)
 
@@ -43,12 +46,13 @@ def extract_map():
 
 def generate_view(map, x, y, orientation):
     view = []
-    for idx, val in enumerate(map[y][x+1::]):
+    rotated_map, rotated_x, rotated_y = rotate_map_and_coordinates(map, x, y, orientation)
+    for idx, val in enumerate(rotated_map[rotated_y][rotated_x+1::]):
         if val == ' ':
             val = "O"
-            if map[y-1][x+idx+1] == ' ':
+            if rotated_map[rotated_y - 1][rotated_x + idx + 1] == ' ':
                 val += 'L'
-            if map[y+1][x+idx+1] == ' ':
+            if rotated_map[rotated_y + 1][rotated_x + idx + 1] == ' ':
                 val += 'R'
             view.append(val)
         else:
@@ -77,10 +81,11 @@ def rotate_map_and_coordinates(map, x, y, orientation):
     rotated_y = y
     rotated_map = map
     for _ in range(ROTATIONS.get(orientation, 0)):
-        rotated_x, rotated_y = rotate_coordinates_90_degrees(rotated_x, rotated_y, len(rotated_map) - 1)
+        rotated_x, rotated_y = \
+            rotate_coordinates_90_degrees(rotated_x, rotated_y, len(rotated_map) - 1)
         rotated_map = [list(line) for line in zip(*reversed(rotated_map))]
     return rotated_map, rotated_x, rotated_y
 
 
-def rotate_coordinates_90_degrees(x, y, width):
-    return width - y, x
+def rotate_coordinates_90_degrees(x, y, map_width):
+    return map_width - y, x
