@@ -5,12 +5,12 @@ from code_challenge_19.challenge_19 import rotate_map_and_coordinates
 from code_challenge_19.challenge_19 import extract_map
 import pytest
 
-# "MToxOkU6MTIzNDU2" 1, 1, E
-# "MToxOlM6MTIzNDU2" 1, 1, S
-# "MjoxOkU6MTIzNDU2" 2, 1, E
-# "MToyOkU6MTIzNDU2" 1, 2, E
-# "NDo0OkU6MTIzNDU2" 4, 4, E
-# "NDo4OkU6MTIzNDU2" 4, 8, E
+# "MToxOkU6MTIzNDU2" = 1, 1, E
+# "MToxOlM6MTIzNDU2" = 1, 1, S
+# "MjoxOkU6MTIzNDU2" = 2, 1, E
+# "MToyOkU6MTIzNDU2" = 1, 2, E
+# "NDo0OkU6MTIzNDU2" = 4, 4, E
+# "NDo4OkU6MTIzNDU2" = 4, 8, E
 
 TEST_MAP = \
     "*************************\n" +\
@@ -228,3 +228,33 @@ def test_trolley_turn_left():
     assert y == 8
     assert orientation == "N"
     assert view == ['O', 'O', 'O', 'OR', 'O', 'O', 'OR']
+
+
+def test_move_trolley_when_facing_N_updates_correctly():
+    reference_id = create_reference_id(12, 8, "N", "123456")
+    view, reference_id = update_trolley('M', reference_id)
+    x, y, orientation, trolley_id = decode_reference_id(reference_id)
+    assert x == 12
+    assert y == 7
+    assert orientation == "N"
+    assert view == ['O', 'O', 'OLR', 'O', 'O', 'OLR']
+
+
+def test_move_trolley_when_facing_S_updates_correctly():
+    reference_id = create_reference_id(23, 1, "S", "123456")
+    view, reference_id = update_trolley('M', reference_id)
+    x, y, orientation, trolley_id = decode_reference_id(reference_id)
+    assert x == 23
+    assert y == 2
+    assert orientation == "S"
+    assert view == ['O', 'OR', 'O', 'O', 'O', 'OR']
+
+
+def test_move_trolley_when_facing_W_updates_correctly():
+    reference_id = create_reference_id(13, 1, "W", "123456")
+    view, reference_id = update_trolley('M', reference_id)
+    x, y, orientation, trolley_id = decode_reference_id(reference_id)
+    assert x == 12
+    assert y == 1
+    assert orientation == "W"
+    assert view == ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'OL']

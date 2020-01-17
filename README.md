@@ -33,6 +33,12 @@ Rotating the map means the trolley location has to alter too from the passed x, 
 |      180 | width-x | depth-y |
 |      270 | y       | width-x |
 
+### ToDo:
+* [ ] Merge the constants into a single dictionary
+* [ ] Passing map, coordinates and location a lot of the time, maybe move into a single structure?
+* [ ] Rotating just uses a rotate 90 function and does it twice for 180 degrees, three times for 270 degrees - find a more efficient way of doing this.
+* [ ] After all said and done is rotating still a good idea? I didn't use it for moving, just when generating the view.
+
 ## code-challenge-18
 https://coding-challenges.jl-engineering.net/challenges/challenge-18/
 
