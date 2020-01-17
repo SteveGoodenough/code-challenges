@@ -212,7 +212,9 @@ def test_rotate_using_invalid_orientation_returns_same_map(mocker):
 
 def test_trolley_turn_right():
     reference_id = create_reference_id(1, 1, "E", "123456")
+
     view, reference_id = update_trolley('R', reference_id)
+
     x, y, orientation, trolley_id = decode_reference_id(reference_id)
     assert x == 1
     assert y == 1
@@ -222,7 +224,9 @@ def test_trolley_turn_right():
 
 def test_trolley_turn_left():
     reference_id = create_reference_id(1, 8, "E", "123456")
+
     view, reference_id = update_trolley('L', reference_id)
+
     x, y, orientation, trolley_id = decode_reference_id(reference_id)
     assert x == 1
     assert y == 8
@@ -232,7 +236,9 @@ def test_trolley_turn_left():
 
 def test_move_trolley_when_facing_N_updates_correctly():
     reference_id = create_reference_id(12, 8, "N", "123456")
+
     view, reference_id = update_trolley('M', reference_id)
+
     x, y, orientation, trolley_id = decode_reference_id(reference_id)
     assert x == 12
     assert y == 7
@@ -242,7 +248,9 @@ def test_move_trolley_when_facing_N_updates_correctly():
 
 def test_move_trolley_when_facing_S_updates_correctly():
     reference_id = create_reference_id(23, 1, "S", "123456")
+
     view, reference_id = update_trolley('M', reference_id)
+
     x, y, orientation, trolley_id = decode_reference_id(reference_id)
     assert x == 23
     assert y == 2
@@ -252,7 +260,9 @@ def test_move_trolley_when_facing_S_updates_correctly():
 
 def test_move_trolley_when_facing_W_updates_correctly():
     reference_id = create_reference_id(13, 1, "W", "123456")
+
     view, reference_id = update_trolley('M', reference_id)
+
     x, y, orientation, trolley_id = decode_reference_id(reference_id)
     assert x == 12
     assert y == 1

@@ -12,6 +12,7 @@ I took the decision to ignore a move command if the square wasn't clear, therefo
 As I had a function that allowed for moving East (right), I decided for other directions to use a novel solution a colleague used for a previous challenge (Sokoban) where he rotated the board allowing you to use the same "move right" function.
 
 That means we can use the following rotations to allow for all four directions:
+
 | Rotation | Moving | Orientation |
 |---------:|--------|:-----------:|
 |        0 | right  | E           |
@@ -26,6 +27,7 @@ Refactoring this using the reversed function makes it more readable, i.e. `retur
 For rotating 180 and 270 degrees, I just repeat the turn 90 function. Maybe a future refactor can make this more efficient but I got bored of trying different approaches for now.
 
 Rotating the map means the trolley location has to alter too from the passed x, y coordinates.
+
 | Rotation | new x   | new y   |
 |---------:|---------|---------|
 |        0 | x       | y       |
