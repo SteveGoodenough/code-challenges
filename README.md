@@ -1,5 +1,23 @@
 # code-challenges
 
+## code-challenge-21
+https://coding-challenges.jl-engineering.net/challenges/challenge-21/
+
+A Sudoku solver.
+
+My initial approach was to start with using solving methods a human would have to use to solve a puzzle, but then it occurred to me to see what a brute force attack solver would look like (trying combinations until a solution(s) were found).
+
+For a good Sudoku there should only be one solution and this brute force method works really well. As soon as there are multiple solutions the recursion in this solution can take time to find all solutions. However, my initial approach here would not have helped as you would need to track the previous solutions to find the range of solutions possible.
+
+The upshot of this approach is that it solves those incredibly difficult puzzles that a human would need all logic methods to solve really quickly.
+
+So again, a code challenge used recursion in the solution. Here it works well in trying out all possible numbers in each empty square and backing up if a number in a square results in an unsolvable puzzle.
+
+The result is that this method can find all possible solutions too.
+
+Luckily(?) for me the test puzzle of an unsolvable grid actually worked and resulted in the empty list being returned.
+
+
 ## code-challenge-19
 https://coding-challenges.jl-engineering.net/challenges/challenge-19/
 

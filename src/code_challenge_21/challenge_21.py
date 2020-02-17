@@ -1,35 +1,32 @@
-board = []
 solutions = []
 
 
 def solve_sudoku(grid):
-    global board
     global solutions
     solutions = []
     board = convert_list_to_board(grid)
-    solve_it()
+    solve_it(board)
     print("solutions found:", len(solutions), solutions)
     return solutions
 
 
-def solve_it():
-    global board
-    print('*', end='')
+def solve_it(board):
     for x in range(9):
         for y in range(9):
             if board[y][x] == 0:
                 for num in range(1, 10):
-                    if check_if_number_allowed(x, y, num):
+                    if check_if_number_allowed(board, x, y, num):
                         board[y][x] = num
-                        solve_it()
+                        board = solve_it(board)
                         board[y][x] = 0
-                return
+                return board
     add_solution(board)
+    return board
 
 
 def add_solution(solution):
     global solutions
-    solutions.append(convert_board_to_list(board))
+    solutions.append(convert_board_to_list(solution))
     print("solution=", solution, len(solutions))
 
 
@@ -45,8 +42,7 @@ def convert_board_to_list(board):
     return flat_list
 
 
-def check_if_number_allowed(x, y, num):
-    global board
+def check_if_number_allowed(board, x, y, num):
     for col in range(9):
         if board[y][col] == num:
             return False
