@@ -1,5 +1,7 @@
 from code_challenge_21.challenge_21 import solve_sudoku
 from code_challenge_21.challenge_21 import check_if_number_allowed
+from code_challenge_21.challenge_21 import convert_list_to_board
+from code_challenge_21.challenge_21 import convert_board_to_list
 
 
 def test_a_number_allowed():
@@ -60,6 +62,58 @@ def test_a_number_not_allowed_in_square():
 
     valid = check_if_number_allowed(board, 6, 8, 3)
     assert valid is False
+
+
+def test_convert_grid_to_board():
+    grid = [
+        7, 0, 9, 0, 0, 2, 6, 8, 0,
+        0, 0, 2, 0, 5, 0, 7, 0, 4,
+        0, 0, 0, 0, 0, 0, 2, 0, 0,
+        1, 9, 0, 0, 0, 7, 0, 6, 0,
+        8, 6, 7, 1, 9, 5, 0, 4, 0,
+        5, 0, 4, 0, 0, 0, 0, 9, 0,
+        4, 3, 5, 7, 8, 0, 0, 2, 0,
+        0, 0, 6, 4, 0, 0, 0, 0, 1,
+        9, 8, 0, 5, 0, 6, 0, 0, 3
+    ]
+    board = convert_list_to_board(grid)
+    assert board == [
+        [7, 0, 9, 0, 0, 2, 6, 8, 0],
+        [0, 0, 2, 0, 5, 0, 7, 0, 4],
+        [0, 0, 0, 0, 0, 0, 2, 0, 0],
+        [1, 9, 0, 0, 0, 7, 0, 6, 0],
+        [8, 6, 7, 1, 9, 5, 0, 4, 0],
+        [5, 0, 4, 0, 0, 0, 0, 9, 0],
+        [4, 3, 5, 7, 8, 0, 0, 2, 0],
+        [0, 0, 6, 4, 0, 0, 0, 0, 1],
+        [9, 8, 0, 5, 0, 6, 0, 0, 3]
+    ]
+
+
+def test_convert_board_to_grid():
+    board = [
+        [7, 0, 9, 0, 0, 2, 6, 8, 0],
+        [0, 0, 2, 0, 5, 0, 7, 0, 4],
+        [0, 0, 0, 0, 0, 0, 2, 0, 0],
+        [1, 9, 0, 0, 0, 7, 0, 6, 0],
+        [8, 6, 7, 1, 9, 5, 0, 4, 0],
+        [5, 0, 4, 0, 0, 0, 0, 9, 0],
+        [4, 3, 5, 7, 8, 0, 0, 2, 0],
+        [0, 0, 6, 4, 0, 0, 0, 0, 1],
+        [9, 8, 0, 5, 0, 6, 0, 0, 3]
+    ]
+    grid = convert_board_to_list(board)
+    assert grid == [
+        7, 0, 9, 0, 0, 2, 6, 8, 0,
+        0, 0, 2, 0, 5, 0, 7, 0, 4,
+        0, 0, 0, 0, 0, 0, 2, 0, 0,
+        1, 9, 0, 0, 0, 7, 0, 6, 0,
+        8, 6, 7, 1, 9, 5, 0, 4, 0,
+        5, 0, 4, 0, 0, 0, 0, 9, 0,
+        4, 3, 5, 7, 8, 0, 0, 2, 0,
+        0, 0, 6, 4, 0, 0, 0, 0, 1,
+        9, 8, 0, 5, 0, 6, 0, 0, 3
+    ]
 
 
 def test_solvable_sudoku():
